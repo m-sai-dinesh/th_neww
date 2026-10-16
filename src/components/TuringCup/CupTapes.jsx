@@ -8,7 +8,7 @@ import { accent, code, display, gold, ink } from "./cupStyles";
 const number = new Intl.NumberFormat("en-IN");
 
 const facts = [
-  `${number.format(latestTuringCup.teams)} teams`,
+  `${number.format(latestTuringCup.participants)} participants`,
   `${number.format(latestTuringCup.colleges)} colleges`,
   `${contestdetails.length} editions`,
   edition.prizePool && `₹${number.format(edition.prizePool)} prize pool`,
@@ -72,17 +72,20 @@ function Tape({ items, reverse, tilt, sx, itemSx, separator = "" }) {
   );
 }
 
-/** Two tapes crossing over each other: what the Cup is, and its numbers. */
-export default function CupTapes() {
+/**
+ * Two tapes crossing over each other: what the Cup is, and its numbers.
+ * `onGreen` sets the top tape in white, for use on the green closing band.
+ */
+export default function CupTapes({ onGreen, sx }) {
   return (
     <Box
-      component="section"
       sx={{
         position: "relative",
         overflow: "hidden",
         py: { xs: 8, md: 13 },
         display: "grid",
-        "& > *": { gridArea: "1 / 1" }
+        "& > *": { gridArea: "1 / 1" },
+        ...sx
       }}>
       <Box sx={visuallyHidden}>{facts.join(", ")}</Box>
       <Tape
@@ -90,8 +93,11 @@ export default function CupTapes() {
         tilt={-6}
         sx={{
           zIndex: 1,
-          color: "#fff",
-          background: `linear-gradient(90deg, ${accent}, #0b3a2c 50%, ${accent})`
+          color: onGreen ? accent : "#fff",
+          background: onGreen
+            ? "#fff"
+            : `linear-gradient(90deg, ${accent}, #0b3a2c 50%, ${accent})`,
+          ...(onGreen && { boxShadow: "0 20px 40px -16px rgba(0,0,0,0.5)" })
         }}
         itemSx={i => ({
           fontFamily: display,
@@ -102,7 +108,7 @@ export default function CupTapes() {
           // every other word is only an outline
           ...(i % 2 && {
             color: "transparent",
-            WebkitTextStroke: "1.5px #fff"
+            WebkitTextStroke: `1.5px ${onGreen ? accent : "#fff"}`
           })
         })}
       />

@@ -48,7 +48,7 @@ export default function CupStory() {
 
   return (
     <Box component="section" aria-labelledby="cup-about" sx={section}>
-      <CupHeading id="cup-about" title="What is the" accent="Cup?" />
+      <CupHeading id="cup-about" title="What is" accent="Turing Cup?" />
       <Typography
         ref={textRef}
         sx={{

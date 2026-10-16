@@ -34,14 +34,14 @@ export const sweepText = {
 
 /** The page column every section sits in, as on the home page. */
 export const column = {
-  maxWidth: 1200,
+  maxWidth: 1225,
   mx: "auto",
   px: { xs: 2.5, sm: 4, md: 6 }
 };
 
 export const section = {
   ...column,
-  py: { xs: 7, md: 11 }
+  py: { xs: 7, md: 9 }
 };
 
 export const calm = () =>

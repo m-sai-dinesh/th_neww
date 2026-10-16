@@ -2,32 +2,18 @@ import { useLayoutEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MEMBERSHIP_URL } from "../../data/home";
-import { edition, editionPhase } from "../../data/turingCup";
 import CupButton from "./CupButton";
-import { code, column, display, gold, mint, serif } from "./cupStyles";
+import CupTapes from "./CupTapes";
+import { display, gold, mint, serif } from "./cupStyles";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const COPY = {
-  registration: {
-    title: "Your name belongs on",
-    accent: "the podium.",
-    text: `Registration for ${edition.name} is open. Round 1 is free.`,
-    cta: { href: edition.registrationUrl, label: "Register now" }
-  },
-  other: {
-    title: "The next Cup is",
-    accent: "loading…",
-    text: "Join the members' group and hear the moment registrations open.",
-    cta: { href: MEMBERSHIP_URL, label: "Get notified" }
-  }
-};
-
-/** The closing band: green glass, drifting aura and the name sliding past. */
+/**
+ * The closing band: the name, the motto, the crossing tapes and a way to the
+ * champions, on green glass with a drifting aura and the name sliding past.
+ */
 export default function CupFinale() {
   const ref = useRef(null);
-  const copy = editionPhase() === "registration" ? COPY.registration : COPY.other;
 
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
@@ -46,7 +32,8 @@ export default function CupFinale() {
   }, []);
 
   return (
-    <Box sx={{ ...column, pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 } }}>
+    // Wider than the page column, as an opening band
+    <Box sx={{ maxWidth: 1440, mx: "auto", px: { xs: 1, sm: 2, md: 3 }, pt: { xs: 1, md: 2 }, pb: { xs: 2, md: 3 } }}>
       <Box
         ref={ref}
         component="section"
@@ -58,7 +45,7 @@ export default function CupFinale() {
           isolation: "isolate",
           borderRadius: { xs: "24px", md: "36px" },
           px: { xs: 3, sm: 6, md: 10 },
-          py: { xs: 8, md: 12 },
+          py: { xs: 7, md: 9 },
           textAlign: "center",
           color: "#fff",
           background: `radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1.2px) 0 0 / 22px 22px,
@@ -106,26 +93,45 @@ export default function CupFinale() {
 
         <Typography
           id="cup-finale"
-          component="h2"
+          component="h1"
           sx={{
-            mx: "auto",
-            maxWidth: 820,
-            fontSize: { xs: "2rem", sm: "2.8rem", md: "3.6rem" },
-            fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: "-0.04em"
+            fontFamily: display,
+            fontSize: { xs: "2.6rem", sm: "4rem", md: "5.4rem" },
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            backgroundImage: `linear-gradient(100deg, #fff 0%, #ffd58f 30%, ${gold} 50%, ${mint} 70%, #fff 100%)`,
+            backgroundSize: "250% 100%",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+            filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.3))",
+            "@keyframes cup-finale-sweep": { to: { backgroundPosition: "-250% 0" } },
+            "@media (prefers-reduced-motion: no-preference)": {
+              animation: "cup-finale-sweep 6s linear infinite"
+            }
           }}>
-          {copy.title}{" "}
+          TURING CUP
+        </Typography>
+        <Typography
+          sx={{
+            mt: { xs: 1.5, md: 2 },
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.4rem" },
+            fontWeight: 700,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em"
+          }}>
+          One team, one{" "}
           <Box component="span" sx={{ fontFamily: serif, fontStyle: "italic", fontWeight: 500, color: "#ffd58f" }}>
-            {copy.accent}
+            dream.
           </Box>
         </Typography>
-        <Typography sx={{ mt: 2.5, mx: "auto", maxWidth: 520, fontFamily: code, fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, color: "rgba(255,255,255,0.75)" }}>
-          {copy.text}
-        </Typography>
-        <Box sx={{ mt: 5 }}>
-          <CupButton href={copy.cta.href}>{copy.cta.label}</CupButton>
-        </Box>
+
+        {/* the tapes run edge to edge, past the band's padding; their tilted
+            ends reach past this row, so only the band itself clips them */}
+        <CupTapes onGreen sx={{ mx: { xs: -3, sm: -6, md: -10 }, py: { xs: 4, md: 6 }, overflow: "visible" }} />
+
+        <CupButton href="#champions">Meet the champions</CupButton>
       </Box>
     </Box>
   );

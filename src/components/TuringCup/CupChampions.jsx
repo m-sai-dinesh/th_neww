@@ -284,7 +284,7 @@ export default function CupChampions() {
           flexWrap: "wrap",
           gap: 0.75,
           p: 0.75,
-          mb: { xs: 5, md: 7 },
+          mb: { xs: 3, md: 4 },
           borderRadius: "999px",
           bgcolor: "rgba(15,26,22,0.05)",
           border: `1px solid ${faint}`

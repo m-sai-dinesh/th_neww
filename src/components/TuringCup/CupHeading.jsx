@@ -14,7 +14,7 @@ export default function CupHeading({ id, kicker, title, accent, intro, center })
         maxWidth: center ? 760 : 680,
         mx: center ? "auto" : 0,
         textAlign: center ? "center" : "left",
-        mb: { xs: 4, md: 6 }
+        mb: { xs: 2, md: 3 }
       }}>
       {kicker ? (
         <Typography
@@ -52,7 +52,7 @@ export default function CupHeading({ id, kicker, title, accent, intro, center })
         id={id}
         component="h2"
         sx={{
-          mt: 1.25,
+          mt: kicker ? 1.25 : 0,
           fontSize: { xs: "2.1rem", md: "3rem" },
           fontWeight: 700,
           lineHeight: 1.05,

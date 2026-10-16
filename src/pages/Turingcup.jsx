@@ -6,10 +6,9 @@ import CupClock from "../components/TuringCup/CupClock";
 import CupEasterEgg from "../components/TuringCup/CupEasterEgg";
 import CupFaqs from "../components/TuringCup/CupFaqs";
 import CupFinale from "../components/TuringCup/CupFinale";
-import CupHero from "../components/TuringCup/CupHero";
 import CupPrizes from "../components/TuringCup/CupPrizes";
 import CupStory from "../components/TuringCup/CupStory";
-import CupTapes from "../components/TuringCup/CupTapes";
+import CupTrends from "../components/TuringCup/CupTrends";
 import { edition, nextRound } from "../data/turingCup";
 import useReveal from "../hooks/useReveal";
 
@@ -21,14 +20,13 @@ function Turingcup() {
   return (
     <Box ref={page}>
       <Seo routename={"Turing Cup"} />
-      <CupHero />
-      <CupTapes />
+      <CupFinale />
       <CupStory />
+      <CupTrends />
       {upcoming && <CupClock round={upcoming} />}
       <CupChampions />
       {edition.prizePool > 0 && <CupPrizes />}
       <CupFaqs />
-      <CupFinale />
       <CupEasterEgg />
     </Box>
   );
