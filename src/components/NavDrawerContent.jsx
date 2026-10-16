@@ -13,14 +13,12 @@ import Link from "./Link";
 import NavLabel from "./NavLabel";
 import logo from "../assets/images/image.svg";
 
-export default function NavDrawerContent({ items, onClick, isTuringCupPage }) {
-  const isDark = Boolean(isTuringCupPage);
-
+export default function NavDrawerContent({ items, onClick }) {
   return (
     <Box
       onClick={onClick}
       sx={{
-        color: isDark ? "#ffffff" : "#1d1d1f",
+        color: "#1d1d1f",
         height: "100%",
         display: "flex",
         flexDirection: "column",
@@ -75,15 +73,10 @@ export default function NavDrawerContent({ items, onClick, isTuringCupPage }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: isDark
-              ? "linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)"
-              : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 245, 250, 0.75) 100%)",
-            border: isDark
-              ? "1px solid rgba(255, 255, 255, 0.16)"
-              : "1px solid rgba(255, 255, 255, 0.8)",
-            boxShadow: isDark
-              ? "0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
-              : "0 3px 10px rgba(0, 0, 0, 0.06), inset 0 1px 0 #ffffff"
+            background:
+              "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 245, 250, 0.75) 100%)",
+            border: "1px solid rgba(255, 255, 255, 0.8)",
+            boxShadow: "0 3px 10px rgba(0, 0, 0, 0.06), inset 0 1px 0 #ffffff"
           }}>
           <Box
             component="img"
@@ -105,9 +98,7 @@ export default function NavDrawerContent({ items, onClick, isTuringCupPage }) {
 
       <Divider
         sx={{
-          borderColor: isDark
-            ? "rgba(255, 255, 255, 0.1)"
-            : "rgba(0, 0, 0, 0.08)",
+          borderColor: "rgba(0, 0, 0, 0.08)",
           mb: 1.5
         }}
       />
@@ -122,50 +113,26 @@ export default function NavDrawerContent({ items, onClick, isTuringCupPage }) {
                     borderRadius: "10px",
                     px: 2,
                     py: 1,
-                    color: isDark
-                      ? isActive
-                        ? "#F2AA4D"
-                        : "rgba(255, 255, 255, 0.85)"
-                      : isActive
-                        ? "#000000"
-                        : "#2c2c2e",
-                    bgcolor: isDark
-                      ? isActive
-                        ? "rgba(242, 170, 76, 0.18)"
-                        : "transparent"
-                      : isActive
-                        ? "rgba(255, 255, 255, 0.9)"
-                        : "transparent",
-                    border: isDark
-                      ? isActive
-                        ? "1px solid rgba(242, 170, 76, 0.35)"
-                        : "1px solid transparent"
-                      : isActive
-                        ? "1px solid rgba(0, 0, 0, 0.06)"
-                        : "1px solid transparent",
+                    color: isActive ? "#000000" : "#2c2c2e",
+                    bgcolor: isActive
+                      ? "rgba(255, 255, 255, 0.9)"
+                      : "transparent",
+                    border: isActive
+                      ? "1px solid rgba(0, 0, 0, 0.06)"
+                      : "1px solid transparent",
                     boxShadow: isActive
-                      ? isDark
-                        ? "0 0 14px rgba(242, 170, 76, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
-                        : "0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)"
+                      ? "0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)"
                       : "none",
                     transition: "all 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
                     "&:hover": {
-                      bgcolor: isDark
-                        ? "rgba(255, 255, 255, 0.08)"
-                        : "rgba(255, 255, 255, 0.65)",
+                      bgcolor: "rgba(255, 255, 255, 0.65)",
                       transform: "translateX(2px)"
                     }
                   }}>
                   <ListItemIcon
                     sx={{
                       minWidth: 36,
-                      color: isDark
-                        ? isActive
-                          ? "#F2AA4D"
-                          : "rgba(255, 255, 255, 0.7)"
-                        : isActive
-                          ? "#16654F"
-                          : "rgba(0, 0, 0, 0.55)"
+                      color: isActive ? "#16654F" : "rgba(0, 0, 0, 0.55)"
                     }}>
                     <Icon fontSize="small" />
                   </ListItemIcon>

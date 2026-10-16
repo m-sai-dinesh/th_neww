@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import socialMediaItemsDefault, {
   socialMediaItems as socialMediaItemsNamed
 } from "../data/socialMediaItems";
-import useIsTuringCupPage from "../hooks/useIsTuringCupPage";
 import Link from "./Link";
 import { LocationColorIcon } from "./BrandIcons.jsx";
 
@@ -19,55 +18,29 @@ const MAGNIFIES =
 
 const easeSpring = "cubic-bezier(0.32, 0.72, 0, 1)";
 
-const palettes = {
-  light: {
-    ink: "#1d1d1f",
-    muted: "rgba(29, 29, 31, 0.56)",
-    accent: "#16654F",
-    aura: "radial-gradient(40% 70% at 18% 60%, rgba(22, 101, 79, 0.22), transparent 70%), radial-gradient(35% 80% at 82% 40%, rgba(96, 165, 250, 0.22), transparent 70%), radial-gradient(30% 60% at 55% 90%, rgba(244, 114, 182, 0.12), transparent 70%)",
-    panelBg:
-      "linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.38) 45%, rgba(236, 246, 255, 0.48) 100%)",
-    panelBorder: "rgba(255, 255, 255, 0.85)",
-    panelShadow:
-      "0 30px 60px -24px rgba(15, 23, 42, 0.18), 0 8px 24px -12px rgba(15, 23, 42, 0.08), inset 0 1.5px 1px rgba(255, 255, 255, 1), inset 0 -1px 1px rgba(255, 255, 255, 0.5)",
-    sheen: "rgba(255, 255, 255, 0.7)",
-    trayBg:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%)",
-    trayBorder: "rgba(255, 255, 255, 0.9)",
-    trayShadow:
-      "0 12px 30px -10px rgba(15, 23, 42, 0.2), inset 0 1px 1px rgba(255, 255, 255, 1), inset 0 -1px 1px rgba(15, 23, 42, 0.04)",
-    tileBg:
-      "linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 245, 247, 0.92) 100%)",
-    tileShadow:
-      "0 6px 14px -6px rgba(15, 23, 42, 0.28), 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)",
-    icon: "#181717",
-    label: "rgba(29, 29, 31, 0.82)",
-    labelInk: "#ffffff"
-  },
-  dark: {
-    ink: "#f5f5f7",
-    muted: "rgba(245, 245, 247, 0.56)",
-    accent: "#F2AA4C",
-    aura: "radial-gradient(40% 70% at 18% 60%, rgba(242, 170, 76, 0.2), transparent 70%), radial-gradient(35% 80% at 82% 40%, rgba(56, 189, 248, 0.14), transparent 70%)",
-    panelBg:
-      "linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(30, 40, 54, 0.42) 45%, rgba(16, 24, 32, 0.6) 100%)",
-    panelBorder: "rgba(255, 255, 255, 0.14)",
-    panelShadow:
-      "0 30px 60px -20px rgba(0, 0, 0, 0.7), inset 0 1.5px 1px rgba(255, 255, 255, 0.18), inset 0 -1px 1px rgba(0, 0, 0, 0.4)",
-    sheen: "rgba(255, 255, 255, 0.14)",
-    trayBg:
-      "linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)",
-    trayBorder: "rgba(255, 255, 255, 0.16)",
-    trayShadow:
-      "0 12px 30px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2)",
-    tileBg:
-      "linear-gradient(160deg, rgba(64, 72, 86, 0.95) 0%, rgba(34, 40, 50, 0.95) 100%)",
-    tileShadow:
-      "0 6px 14px -6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.16)",
-    icon: "#ffffff",
-    label: "rgba(245, 245, 247, 0.9)",
-    labelInk: "#101820"
-  }
+const palette = {
+  ink: "#1d1d1f",
+  muted: "rgba(29, 29, 31, 0.56)",
+  accent: "#16654F",
+  aura: "radial-gradient(40% 70% at 18% 60%, rgba(22, 101, 79, 0.22), transparent 70%), radial-gradient(35% 80% at 82% 40%, rgba(96, 165, 250, 0.22), transparent 70%), radial-gradient(30% 60% at 55% 90%, rgba(244, 114, 182, 0.12), transparent 70%)",
+  panelBg:
+    "linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.38) 45%, rgba(236, 246, 255, 0.48) 100%)",
+  panelBorder: "rgba(255, 255, 255, 0.85)",
+  panelShadow:
+    "0 30px 60px -24px rgba(15, 23, 42, 0.18), 0 8px 24px -12px rgba(15, 23, 42, 0.08), inset 0 1.5px 1px rgba(255, 255, 255, 1), inset 0 -1px 1px rgba(255, 255, 255, 0.5)",
+  sheen: "rgba(255, 255, 255, 0.7)",
+  trayBg:
+    "linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%)",
+  trayBorder: "rgba(255, 255, 255, 0.9)",
+  trayShadow:
+    "0 12px 30px -10px rgba(15, 23, 42, 0.2), inset 0 1px 1px rgba(255, 255, 255, 1), inset 0 -1px 1px rgba(15, 23, 42, 0.04)",
+  tileBg:
+    "linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 245, 247, 0.92) 100%)",
+  tileShadow:
+    "0 6px 14px -6px rgba(15, 23, 42, 0.28), 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1)",
+  icon: "#181717",
+  label: "rgba(29, 29, 31, 0.82)",
+  labelInk: "#ffffff"
 };
 
 function DockTile({ label, palette, children, ...props }) {
@@ -387,8 +360,6 @@ function MailBird({ palette }) {
 }
 
 export default function Footer() {
-  const isTuringCupPage = useIsTuringCupPage();
-  const palette = isTuringCupPage ? palettes.dark : palettes.light;
   const panelRef = useRef(null);
   const dockRef = useRef(null);
   const frame = useRef(null);
@@ -484,8 +455,7 @@ export default function Footer() {
             background: `radial-gradient(420px circle at var(--mx) var(--my), ${palette.sheen}, transparent 60%)`,
             opacity: "var(--lit)",
             transition: "opacity 0.5s ease",
-            pointerEvents: "none",
-            mixBlendMode: isTuringCupPage ? "screen" : "normal"
+            pointerEvents: "none"
           },
           // Liquid highlight along the top edge
           "&::after": {

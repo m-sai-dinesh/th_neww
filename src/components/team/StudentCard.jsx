@@ -6,6 +6,7 @@ import XIcon from "@mui/icons-material/X";
 import { TEAM_PHOTO_SIZE } from "../../data/teamImages";
 import { accent, faint, ink, mono, muted } from "../../utils/designTokens";
 import Image from "../Image";
+import { CodeforcesColorIcon } from "../BrandIcons";
 
 // Contest platforms, read from `cpprofile`
 const CONTEST_PLATFORMS = [
@@ -13,7 +14,8 @@ const CONTEST_PLATFORMS = [
     host: "codeforces.com",
     short: "CF",
     name: "Codeforces",
-    pattern: /\/profile\/([^/?#]+)/
+    pattern: /\/profile\/([^/?#]+)/,
+    Icon: CodeforcesColorIcon
   },
   {
     host: "codechef.com",
@@ -331,14 +333,34 @@ export default function StudentCard({
               <Box
                 component="span"
                 sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   flexShrink: 0,
-                  px: 0.75,
+                  px: handle.Icon ? 0.6 : 0.75,
                   py: 0.5,
-                  bgcolor: handle.contest ? accent : ink,
+                  bgcolor: handle.Icon
+                    ? "rgba(22,101,79,0.08)"
+                    : handle.contest
+                      ? accent
+                      : ink,
                   color: "#fff",
-                  fontWeight: 700
+                  fontWeight: 700,
+                  lineHeight: 1,
+                  borderRight: handle.Icon
+                    ? `1px solid ${handle.contest ? "rgba(22,101,79,0.18)" : faint}`
+                    : "none"
                 }}>
-                {handle.short}
+                {handle.Icon ? (
+                  <handle.Icon
+                    sx={{
+                      fontSize: "0.95rem",
+                      display: "block"
+                    }}
+                  />
+                ) : (
+                  handle.short
+                )}
               </Box>
               <Box
                 component="span"

@@ -14,8 +14,3 @@ export function withTrailingSlash(to) {
   }
   return `${pathname}/${suffix}`;
 }
-
-/** The Turing Cup pages use the dark theme for the layout, navbar and footer. */
-export function isTuringCupPath(pathname) {
-  return pathname.includes("/turingcup") || pathname.includes("/register");
-}

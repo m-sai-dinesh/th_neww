@@ -27,7 +27,10 @@ export const turingCupRegistrations = contestdetails
   .filter(Boolean)
   .sort((a, b) => a.year - b.year);
 
-export const latestTuringCup = turingCupRegistrations.at(-1);
+export const latestTuringCup = {
+  ...turingCupRegistrations.at(-1),
+  participants: 2641
+};
 
 const rankOf = entry => Number(/Rank (\d+)/.exec(entry.rank)?.[1]) || null;
 
@@ -79,7 +82,7 @@ export const stats = [
   },
   { label: "Events hosted", value: eventCards.length, suffix: "+" },
   {
-    label: `Teams at Turing Cup ${latestTuringCup.year}`,
-    value: latestTuringCup.teams
+    label: `Participants at Turing Cup ${latestTuringCup.year}`,
+    value: 2641
   }
 ];

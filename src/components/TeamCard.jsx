@@ -3,6 +3,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import XIcon from "@mui/icons-material/X";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import CodeIcon from "@mui/icons-material/Code";
+import { CodeforcesColorIcon } from "./BrandIcons";
 import {
   Box,
   Card,
@@ -45,7 +46,11 @@ export default function TeamCard({
       Icon: LanguageIcon,
       sx: { ...iconStyle, color: "#595959" }
     },
-    { href: cpprofile, Icon: CodeIcon, sx: { ...iconStyle, color: "#262626" } }
+    {
+      href: cpprofile,
+      Icon: cpprofile?.includes("codeforces") ? CodeforcesColorIcon : CodeIcon,
+      sx: { ...iconStyle, color: "#262626" }
+    }
   ];
 
   return (

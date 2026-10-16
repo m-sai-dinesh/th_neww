@@ -36,18 +36,21 @@ export const faqs = [
 
 export const contactLinks = [
   {
+    label: "Email",
     href: "mailto:balajiashok018@gmail.com",
     target: "_blank",
     hoverColor: "#ff8c1a",
     Icon: Email
   },
   {
+    label: "WhatsApp",
     href: "https://api.whatsapp.com/send?phone=9642296219",
     target: "_blank",
     hoverColor: "#25D366",
     Icon: WhatsApp
   },
   {
+    label: "Call",
     href: "tel:9642296219",
     hoverColor: "#005ce6",
     Icon: Call
