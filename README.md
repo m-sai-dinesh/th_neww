@@ -60,8 +60,6 @@ for a nested list. Local images are paths under `src/assets` (`images/newsletter
 
 ## Deployment
 
-`firebase.json` serves `dist/` on Firebase Hosting with a single-page-app rewrite. `.github/workflows/main.yml` builds
-and deploys on every push to `main`; it expects the `VITE_POSTHOG_API_KEY` and `FIREBASE_TOKEN` repository secrets. The
-workflow file has to live in the `.github/workflows/` folder at the root of the repository to run.
+The website is deployed on Vercel with single-page-app routing configured in `vercel.json`. Every push to `main` automatically triggers a redeploy on Vercel. CI build verification runs via GitHub Actions (`.github/workflows/main.yml`).
 
 See [MIGRATION.md](MIGRATION.md) for how this project maps to the previous Gatsby site.
