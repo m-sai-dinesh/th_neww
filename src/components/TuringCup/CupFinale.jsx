@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CupButton from "./CupButton";
 import CupTapes from "./CupTapes";
-import { display, gold, mint, serif } from "./cupStyles";
+import { gold, mint, quirky, stadium } from "./cupStyles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,8 +79,8 @@ export default function CupFinale() {
             zIndex: -1,
             left: 0,
             bottom: "-0.18em",
-            fontFamily: display,
-            fontSize: { xs: "30vw", md: "16rem" },
+            fontFamily: stadium,
+            fontSize: { xs: "40vw", md: "22rem" },
             fontWeight: 900,
             lineHeight: 1,
             whiteSpace: "nowrap",
@@ -95,12 +95,12 @@ export default function CupFinale() {
           id="cup-finale"
           component="h1"
           sx={{
-            fontFamily: display,
-            fontSize: { xs: "2.6rem", sm: "4rem", md: "5.4rem" },
+            fontFamily: stadium,
+            fontSize: { xs: "4.4rem", sm: "6.5rem", md: "9rem" },
             fontWeight: 900,
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-            backgroundImage: `linear-gradient(100deg, #fff 0%, #ffd58f 30%, ${gold} 50%, ${mint} 70%, #fff 100%)`,
+            lineHeight: 0.9,
+            letterSpacing: "0.01em",
+            backgroundImage: `linear-gradient(100deg, #fff 0%, #b8f5d6 30%, ${mint} 50%, #b8f5d6 70%, #fff 100%)`,
             backgroundSize: "250% 100%",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
@@ -116,13 +116,15 @@ export default function CupFinale() {
         <Typography
           sx={{
             mt: { xs: 1.5, md: 2 },
+            fontFamily: quirky,
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.4rem" },
-            fontWeight: 700,
+            fontWeight: 600,
+            fontVariationSettings: '"opsz" 48',
             lineHeight: 1.1,
-            letterSpacing: "-0.03em"
+            letterSpacing: "-0.035em"
           }}>
           One team, one{" "}
-          <Box component="span" sx={{ fontFamily: serif, fontStyle: "italic", fontWeight: 500, color: "#ffd58f" }}>
+          <Box component="span" sx={{ fontWeight: 800, color: "#ffd58f" }}>
             dream.
           </Box>
         </Typography>

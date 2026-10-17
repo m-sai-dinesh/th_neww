@@ -2,12 +2,12 @@ import { useLayoutEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ink, section, serif } from "./cupStyles";
+import { ink, quirky, section } from "./cupStyles";
 import CupHeading from "./CupHeading";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Words wrapped in *stars* are set in gold serif italic
+// Words wrapped in *stars* are set in gold
 const STORY =
   "The annual *national* flagship contest of Turing Hut, the programming club of VNR VJIET. Students from colleges across India clear an online qualifier and earn a trip to campus for the *onsite* final, racing the clock for cash prizes and the Cup.";
 
@@ -48,15 +48,17 @@ export default function CupStory() {
 
   return (
     <Box component="section" aria-labelledby="cup-about" sx={section}>
-      <CupHeading id="cup-about" title="What is" accent="Turing Cup?" />
+      <CupHeading id="cup-about" title="What is" accent="Turing Cup?" font={quirky} />
       <Typography
         ref={textRef}
         sx={{
           maxWidth: 980,
           fontSize: { xs: "1.6rem", sm: "2.1rem", md: "2.85rem" },
+          fontFamily: quirky,
           fontWeight: 600,
-          lineHeight: 1.22,
-          letterSpacing: "-0.03em",
+          fontVariationSettings: '"opsz" 72',
+          lineHeight: 1.18,
+          letterSpacing: "-0.035em",
           color: ink
         }}>
         {words.map((word, i) => (
@@ -67,9 +69,7 @@ export default function CupStory() {
               sx={{
                 display: "inline-block",
                 ...(word.gold && {
-                  fontFamily: serif,
-                  fontStyle: "italic",
-                  fontWeight: 500,
+                  fontWeight: 800,
                   color: "#d48a1f"
                 })
               }}>

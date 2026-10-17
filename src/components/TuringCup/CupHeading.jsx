@@ -4,9 +4,10 @@ import { code, gold, ink, muted, serif } from "./cupStyles";
 /**
  * A section opener in the home page's pattern: a kicker, then the title, then
  * an optional intro. The kicker reads like a line of code with a blinking
- * caret, and `accent` sets one word of the title in gold serif italic.
+ * caret, and `accent` sets one word of the title in gold serif italic, or in
+ * gold `font` when the title is given a face of its own.
  */
-export default function CupHeading({ id, kicker, title, accent, intro, center }) {
+export default function CupHeading({ id, kicker, title, accent, intro, center, font }) {
   return (
     <Box
       data-reveal
@@ -57,7 +58,8 @@ export default function CupHeading({ id, kicker, title, accent, intro, center })
           fontWeight: 700,
           lineHeight: 1.05,
           letterSpacing: "-0.035em",
-          color: ink
+          color: ink,
+          ...(font && { fontFamily: font, fontWeight: 800, fontVariationSettings: '"opsz" 96', letterSpacing: "-0.045em" })
         }}>
         {title}
         {accent && (
@@ -66,10 +68,10 @@ export default function CupHeading({ id, kicker, title, accent, intro, center })
             <Box
               component="span"
               sx={{
-                fontFamily: serif,
-                fontStyle: "italic",
-                fontWeight: 500,
-                letterSpacing: "-0.02em",
+                fontFamily: font ?? serif,
+                fontStyle: font ? "normal" : "italic",
+                fontWeight: font ? 800 : 500,
+                letterSpacing: font ? "-0.045em" : "-0.02em",
                 color: "#d48a1f"
               }}>
               {accent}

@@ -1,6 +1,8 @@
 import "@fontsource-variable/unbounded/wght.css";
 import "@fontsource-variable/jetbrains-mono/wght.css";
 import "@fontsource-variable/newsreader/opsz-italic.css";
+import "@fontsource-variable/bricolage-grotesque/opsz.css";
+import "@fontsource-variable/big-shoulders-display";
 import { accent, faint, gold, ink, muted, serif } from "../../utils/designTokens";
 
 export { accent, faint, gold, ink, muted, serif };
@@ -10,6 +12,12 @@ export { accent, faint, gold, ink, muted, serif };
 // big moments and monospace for anything a judge would print
 export const display =
   '"Unbounded Variable", "Instrument Sans Variable", system-ui, sans-serif';
+// Tall, athletic capitals for the Cup's name, like a stadium scoreboard
+export const stadium =
+  '"Big Shoulders Display Variable", "Unbounded Variable", system-ui, sans-serif';
+// Quirky, ink-trap grotesque for the Cup's own story
+export const quirky =
+  '"Bricolage Grotesque Variable", "Instrument Sans Variable", system-ui, sans-serif';
 export const code =
   '"JetBrains Mono Variable", ui-monospace, Menlo, Consolas, monospace';
 export const mint = "#5ee3a1";

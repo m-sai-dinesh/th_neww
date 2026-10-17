@@ -64,7 +64,7 @@ const buttonBase = {
   }
 };
 
-/** "Become a member": a spinning gradient border, a glow and a sheen on hover. */
+/** "Join the community": a spinning gradient border, a glow and a sheen on hover. */
 function JoinButton() {
   return (
     <Box
@@ -138,7 +138,7 @@ function JoinButton() {
         <PlayArrowRoundedIcon sx={{ fontSize: 24 }} />
       </Box>
       <Box component="span" sx={{ position: "relative" }}>
-        Become a member
+        Join the community
       </Box>
     </Box>
   );
